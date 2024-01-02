@@ -6,8 +6,9 @@ import { FaStar } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 
 const SingleNews = ({ data }) => {
-  const { title, author, image_url, details, total_view, rating } = data;
+  const { title, author, image_url, details, total_view, rating,_id } = data;
   const { img, name } = author;
+
   return (
     <div className="mb-7">
       <div className="flex items-center justify-between bg-slate-200 p-3 rounded-t">
@@ -31,7 +32,7 @@ const SingleNews = ({ data }) => {
         <h2 className="text-xl font-bold text-slate-600">{title}</h2>
         <img className="w-full my-4" src={image_url} alt="" />
         <p className="line-clamp-4"> {details} </p>
-        <Link className="text-[#FF8C47] font-bold">Read More</Link>
+        <Link to={`/details/${_id}`} className="text-[#FF8C47] font-bold">Read More</Link>
         <div className="divider"></div>
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2 text-[#FF8C47]">
