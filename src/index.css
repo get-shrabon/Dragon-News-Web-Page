@@ -6,3 +6,8 @@ body {
   @apply bg-white;
   overflow-x: hidden;
 }
+.categories__container a:first-child{
+  background-color: #E2E8F0 !important;
+  color: rgba(0, 0, 0, 0.600);
+  font-weight: 700;
+}
