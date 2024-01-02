@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import Header from "../../Shared/Header/Header";
 import RightSide from "../../Shared/RightSide/RightSide";
 import { FaArrowLeft, FaCalendar } from "react-icons/fa";
@@ -25,9 +25,11 @@ const Details = () => {
               {title}
             </h3>
             <p>{details}</p>
-            <button className="btn btn-error rounded-none text-white mt-3">
-              <FaArrowLeft></FaArrowLeft> All news in this category
-            </button>
+            <Link to={`/`}>
+              <button className="btn btn-error rounded-none text-white mt-3">
+                <FaArrowLeft></FaArrowLeft> All news in this category
+              </button>
+            </Link>
           </div>
           <h2 className="font-bold text-xl mb-3 text-slate-700 mt-10">
             Editors Insight

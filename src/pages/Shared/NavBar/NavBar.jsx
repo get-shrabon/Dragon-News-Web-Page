@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import userImg from "../../../assets/user.png";
 
 const NavBar = () => {
@@ -17,7 +17,7 @@ const NavBar = () => {
   );
   return (
     <div>
-      <div className="navbar my-2">
+      <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,9 +49,9 @@ const NavBar = () => {
         </div>
         <div className="navbar-end">
           <img className="w-[45px] mr-3" src={userImg} alt="" />
-          <a className="bg-slate-700 cursor-pointer text-center py-2 px-7">
+          <Link to={`/login`} className="bg-slate-700 cursor-pointer text-center py-2 px-7">
             Login
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -5,12 +5,14 @@ import About from "../pages/AboutPage/About";
 import Career from "../pages/CareerPage/Career";
 import Details from "../pages/HomePage/News/Details";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import SignUpPage from "../pages/SignUpPage/SignUpPage";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -21,13 +23,21 @@ const Routes = createBrowserRouter([
         element: <About></About>,
       },
       {
-        path: "career",
+        path: "/career",
         element: <Career></Career>,
       },
       {
         path: "/details/:_id",
         element: <Details></Details>,
         loader: () => fetch("news.json"),
+      },
+      {
+        path: "/login",
+        element: <LoginPage></LoginPage>,
+      },
+      {
+        path: "/signUp",
+        element: <SignUpPage></SignUpPage>,
       },
     ],
   },
