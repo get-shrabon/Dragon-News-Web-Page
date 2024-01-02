@@ -1,6 +1,14 @@
+import { useContext, useState } from "react";
 import NavBar from "../Shared/NavBar/NavBar";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
+  const { user, userCreate } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
+  console.log(user);
   const handleSignUp = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -8,8 +16,36 @@ const SignUpPage = () => {
     const name = e.target.name.value;
     const image = e.target.image.value;
     const condition = e.target.terms.checked;
-
-    console.log(email, password, name, image,condition);
+    console.log(email, password, name, image, condition);
+    setErrorMessage("");
+    setSuccessMessage("");
+    // Validation Form
+    {
+      if (!condition) {
+        setErrorMessage("Please Accept Our Conditions!");
+        return;
+      } else if (password < 6) {
+        setErrorMessage("Password must be at least 6 characters long");
+        return;
+      } else if (!/[A-Z]/.test(password)) {
+        setErrorMessage("Password must contain at least one uppercase letter");
+        return;
+      } else if (!/[a-z]/.test(password)) {
+        setErrorMessage("Password must contain at least one lowercase letter");
+        return;
+      }
+    }
+    // User Creator
+    userCreate(email, password)
+      .then((result) => {
+        e.target.reset();
+        console.log(result.user);
+        setSuccessMessage("Your Account Create Successfull");
+        navigate("/");
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
   };
   return (
     <div className="pb-10 2xl:h-[100vh]">
@@ -76,6 +112,14 @@ const SignUpPage = () => {
                 {" "}
                 Accept our Terms & Conditions
               </label>
+            </div>
+            <div>
+              {errorMessage && (
+                <p className="text-error my-2">{errorMessage}</p>
+              )}
+              {successMessage && (
+                <p className="text-success my-2">{successMessage}</p>
+              )}
             </div>
             <button className="btn btn-primary text-white w-full">
               Register
