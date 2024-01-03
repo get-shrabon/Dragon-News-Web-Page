@@ -1,7 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
 import userImg from "../../../assets/user.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NavBar = () => {
+  const { logOut, user } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut().then(() => {
+      toast.warn("Your Account LogOut Success");
+    });
+  };
   const Links = (
     <>
       <li>
@@ -49,11 +59,24 @@ const NavBar = () => {
         </div>
         <div className="navbar-end">
           <img className="w-[45px] mr-3" src={userImg} alt="" />
-          <Link to={`/login`} className="bg-slate-700 cursor-pointer text-center py-2 px-7">
-            Login
-          </Link>
+          {user ? (
+            <button
+              onClick={handleLogOut}
+              className="bg-slate-700 cursor-pointer text-center py-2 px-7"
+            >
+              LogOut
+            </button>
+          ) : (
+            <Link
+              to={`/login`}
+              className="bg-slate-700 cursor-pointer text-center py-2 px-7"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
+      <ToastContainer theme="colored" />
     </div>
   );
 };
