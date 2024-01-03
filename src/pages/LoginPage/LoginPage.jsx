@@ -1,13 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../Shared/NavBar/NavBar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const LoginPage = () => {
-    const {userLogin} = useContext(AuthContext)
+  const { userLogin } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation()
+  console.log(location)
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -30,15 +32,15 @@ const LoginPage = () => {
       }
     }
     // User Login
-    userLogin(email,password)
-    .then(() => {
+    userLogin(email, password)
+      .then(() => {
         e.target.reset();
         setSuccessMessage("Your Account Create Successfull");
-        navigate("/");
-    })
-    .catch(error => {
- setErrorMessage(error.message);
-    })
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
   };
   return (
     <div className="h-[100vh]">

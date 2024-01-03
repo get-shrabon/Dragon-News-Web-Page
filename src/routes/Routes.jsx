@@ -34,7 +34,7 @@ const Routes = createBrowserRouter([
             <Details></Details>
           </PrivateRoute>
         ),
-        loader: () => fetch("news.json"),
+        loader: () => fetch("/news.json"),
       },
       {
         path: "/login",

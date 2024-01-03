@@ -41,7 +41,7 @@ const SignUpPage = () => {
         e.target.reset();
         console.log(result.user);
         setSuccessMessage("Your Account Create Successfull");
-        navigate("/");
+        navigate("/login");
       })
       .catch((error) => {
         setErrorMessage(error.message);
