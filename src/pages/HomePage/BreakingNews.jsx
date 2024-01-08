@@ -2,6 +2,7 @@
 import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
 const BreakingNews = () => {
+    
     return (
       <div className="p-2 bg-slate-200 flex">
         <button className="btn btn-error rounded-none">Latest</button>
@@ -11,6 +12,7 @@ const BreakingNews = () => {
         </Marquee>
       </div>
     );
+    
 };
 
 export default BreakingNews;
